@@ -16,9 +16,9 @@ M-CSF stimulation alter HSC commitment dynamics and myeloid differentiation.
 
 The analysis focuses on four experimental conditions:
 - WT_NT — Wild-type, non-treated
-- WT_MCSF — Wild-type, M-CSF stimulated
+- WT_MCSF — Wild-type, M-CSF stimulated (20µg)
 - KO_NT — Mafb knockout, non-treated
-- KO_MCSF — Mafb knockout, M-CSF stimulated
+- KO_MCSF — Mafb knockout, M-CSF stimulated (20µg)
 
 Cells were sequenced using the 10x Genomics Chromium platform and aligned with
 Cell Ranger. The dataset covers the full hematopoietic hierarchy, including HSCs,
@@ -96,22 +96,26 @@ radiate outward along their respective lineage branches.
 ## Dependencies
 
 All required R packages and their versions are listed in 00_generalDeps.R.
+
 ---
 
 ## Repository Structure
 
 03_Script/
-    01_GlobalHeterogeneity/
-        analysisParams.R                         — Analysis parameters
-        launch_reports_compilation.R             — Report launcher
-        Report.Rmd                               — Main report
-        01_prepareData.R                         — QC and filtering
-        02_GlobalHeterogeneity_tSNE_UMAP.R       — Dimensionality reduction
-        03_cellHeterogeneity_Clustering.R        — Clustering
-        04_cellHeterogeneity_MarkerGenes.R       — DEG analysis
-        07_clusterFunctionalAnalysis.R           — GO enrichment
+└── 01_GlobalHeterogeneity/
+    ├── 00_generalDeps.R                          — R package dependencies
+    ├── analysisParams.R                          — Analysis parameters
+    ├── launch_reports_compilation.R              — Report launcher
+    ├── Report.Rmd                                — Main Rmarkdown report
+    ├── 01_prepareData.R                          — QC and filtering
+    ├── 02_GlobalHeterogeneity_tSNE_UMAP.R        — Dimensionality reduction & annotation
+    ├── 03_cellHeterogeneity_Clustering.R         — Clustering
+    ├── 04_cellHeterogeneity_MarkerGenes.R        — Differential expression analysis
+    └── 07_clusterFunctionalAnalysis.R            — GO functional enrichment
+
 05_OUTPUT/
-    reports/                                     — HTML reports
+└── reports/                                      — Generated HTML reports
+
 README.md
 
 ---
