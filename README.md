@@ -6,7 +6,7 @@ Single-cell RNA-seq pipeline studying HSC myeloid commitment and M-CSF-induced m
 
 
 <p align="center">
-  <img width="297" height="341" alt="image" src="https://github.com/user-attachments/assets/388d07bd-746f-4aef-bada-e3dc8cc82bc9" />
+  <img width="297" height="341" alt="image" src="https://github.com/user-attachments/assets/7fe37c42-a832-4484-b74f-8a5dcbb4bf91" />
 </p>
 
 ## Project Overview
