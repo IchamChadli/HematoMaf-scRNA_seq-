@@ -5,7 +5,7 @@ Single-cell RNA-seq pipeline studying HSC myeloid commitment and M-CSF-induced m
 # Single-Cell RNA-seq Analysis of Hematopoietic Stem Cells in Mafb Knockout Mice
 
 
-<img width="280" height="280" alt="image" src="https://github.com/user-attachments/assets/0e5e553f-1e32-4b93-b0b5-e9864cebf5f2" />
+<img width="890" height="1024" alt="image" src="https://github.com/user-attachments/assets/0d9027bf-0764-4115-8478-4aea80c072d7" />
 
 
 ## Project Overview
