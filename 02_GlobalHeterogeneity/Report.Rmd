@@ -1,0 +1,220 @@
+---
+title: "`r paste(LITERAL_TITLE, sep = '<BR>')`"
+author: "CHADLI Icham"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    theme: yeti
+    highlight: espresso
+    toc: true
+    toc_float: false
+    toc_depth: 2
+---
+
+<hr style="border:1.5px solid  #ffa6a6;">
+
+```{r logo_cb2m, echo=FALSE, out.width = '40%', fig.align="center"}
+knitr::include_graphics("/mnt/DOSI/TLLAB/BIOINFO/HSCgroup/HSC_MafbKo/01_251007_VH00228_279_222C7KHNX_MafbKO/01_Reference/CB2M_logo_gris.png")
+```
+
+<hr style="border:1.5px solid  #ffa6a6;">
+
+```{r rmd_loadDependencies, warning=FALSE, cache = FALSE}
+### Load libraries, global functions/variables, and chunks
+source( file.path( WORKING_DIR, "00_generalDeps.R"));
+```
+
+```{r child = 'Report_Init.Rmd'}
+## Load the initialization elements for the report
+```
+
+```{r rmd_loadParamsAndDependencies, warning=FALSE, cache = FALSE}
+# Import chunks from source files
+read_chunk( path=file.path( WORKING_DIR, "01_prepareData.R"));
+read_chunk( path=file.path( WORKING_DIR, "02_variableGenes.R"));
+read_chunk( path=file.path( WORKING_DIR, "03_cellHeterogeneity_PCA.R"));
+read_chunk( path=file.path( WORKING_DIR, "04_cellHeterogeneity_tSNE_UMAP.R"));
+read_chunk( path=file.path( WORKING_DIR, "05_cellHeterogeneity_Clustering.R"));
+read_chunk( path=file.path( WORKING_DIR, "06_cellHeterogeneity_MarkerGenes.R"));
+read_chunk( path=file.path( WORKING_DIR, "07_clusterFunctionalAnalysis.R"));
+read_chunk( path=file.path( WORKING_DIR, "90_finalize.R"));
+```
+
+<!-- --- -->
+<!-- title: `r paste( GLOBAL_DESCRIPTION, EXPERIMENT_NAME, ANALYSIS_STEP_NAME, sep ="<BR>")` -->
+<!-- --- -->
+
+# Data analysis
+
+## Prepare data
+
+### Load data
+Create the Seurat object from Cell Ranger matrix, keeping only genes expressed in more than three cells and cells expressing more than 200 genes. 
+```{r rmd_loadData, warning = TRUE, fig.dim = c(9,6)}
+<<loadData>>
+```
+
+```{r dt_dependency, echo=FALSE,include = FALSE, warning=FALSE}
+# You need this code to conduct the magic dependences attaching...
+DT::datatable(matrix(),extensions = 'Buttons',  options = list(dom = 'Blfrtip', buttons = c('excel', "csv")))
+```
+
+### Filter data
+```{r rmd_filterData_selection, warning = TRUE, fig.dim = c(9,6)}
+<<filterData_selection>>
+```
+
+### Plot dispersion of excluded and non-excluded cells
+```{r rmd_filterData_summaryPlot, warning = TRUE, fig.dim = c(9,6)}
+<<filterData_summaryPlot>>
+```
+### Filter excluded cells in the Seurat object 
+```{r rmd_filterData_filterObject, warning = TRUE, fig.dim = c(9,6)}
+<<filterData_filterObject>>
+```
+### Detect doublets
+```{r rmd_detect_doublet, warning = TRUE, fig.dim = c(9,6)}
+<<detect_doublet>>
+```
+
+### Normalize data
+```{r rmd_normalizeData, warning = TRUE, fig.dim = c(9,6)}
+<<normalizeData>>
+```
+
+## Find the most variables genes
+
+### Find most variable genes using Seurat package method
+```{r rmd_findVariableGenes_seuratMethod, warning = TRUE, fig.dim = c(9,6)}
+<<findVariableGenes_seuratMethod>>
+```
+
+### Variance/Expression plot highlighting variable genes 
+```{r rmd_findVariableGenes_summaryPlot, warning = TRUE, fig.dim = c(9,6)}
+<<findVariableGenes_summaryPlot>>
+```
+
+### Variable features summary table 
+```{r rmd_findVariableGenes_summaryTable, warning = TRUE, fig.dim = c(9,6)}
+<<findVariableGenes_summaryTable>>
+```
+
+## Principal component analysis 
+
+### Compute and plot PCA
+```{r rmd_heterogeneity_pca, warning = TRUE, fig.dim = c(9,6)}
+<<heterogeneity_pca>>
+```
+
+### Plot PCA highlighting UMI counts
+```{r rmd_heterogeneity_pca_umisCounts, warning = TRUE, fig.dim = c(9,6)}
+<<heterogeneity_pca_umisCounts>>
+```
+
+### Plot PCA highlighting gene counts
+```{r rmd_heterogeneity_pca_genesCounts, warning = TRUE, fig.dim = c(9,6)}
+<<heterogeneity_pca_genesCounts>>
+```
+
+### Plot relationships of UMIS and gene counts with PCs
+```{r rmd_heterogeneity_pca_correlations, warning = TRUE, fig.dim = c(9,6)}
+<<heterogeneity_pca_correlations>>
+```
+
+### Plot PCA loadings
+```{r rmd_heterogeneity_pca_loadings, warning = TRUE, fig.dim = c(9,6)}
+<<heterogeneity_pca_loadings>>
+```
+
+### Cell cycle scoring 
+```{r rmd_heterogeneity_pca_cellcycle, warning = TRUE, fig.dim = c(9,6)}
+<<heterogeneity_pca_cellcycle>>
+```
+
+## Dimensional reduction (TSNE/UMAP)
+
+### Run UMAP and TSNE
+```{r rmd_heterogeneity_dimReduc, warning = TRUE, fig.dim = c(9,6)}
+<<heterogeneity_dimReduc>>
+```
+
+### Plot features in UMAP 
+```{r rmd_dimReduc_ggplot_covariables, warning = TRUE, fig.dim = c(9,6)}
+<<dimReduc_ggplot_covariables>>
+```
+
+## Clustering 
+
+### Identify clusters by graph approach 
+```{r rmd_heterogeneity_identifyClusters, warning = TRUE, fig.dim = c(9,6)}
+<<heterogeneity_identifyClusters>>
+```
+
+### UMIs, genes, mitochondrial and ribosomal percentages by cluster
+```{r rmd_heterogeneity_identifyClusters_splitStats, warning = TRUE, fig.dim = c(9,6)}
+<<heterogeneity_identifyClusters_splitStats>>
+```
+
+### Visualize clusters
+```{r rmd_heterogeneity_dimReduc_with_clusters, warning = TRUE, fig.dim = c(12,8)}
+<<heterogeneity_dimReduc_with_clusters>>
+```
+
+## Marker genes{.tabset .tabset-fade} 
+
+### Identify marker genes
+```{r rmd_heterogeneity_markerGenes, warning = TRUE, fig.dim = c(9,6)}
+<<heterogeneity_markerGenes>>
+```
+
+### Create a datatable with marker genes 
+```{r rmd_heterogeneity_markerGenes_table, results="asis"}
+<<heterogeneity_markerGenes_table>>
+```
+
+### Create a heatmap with marker genes 
+```{r rmd_heterogeneity_markerGenes_heatmap_mean, warning = TRUE, fig.dim = c(12,8)}
+<<heterogeneity_markerGenes_heatmap_mean>>
+```
+
+### Projection of marker genes on umap {.tabset .tabset-fade}
+```{r rmd_heterogeneity_markerGenes_expression_projection, warning = TRUE, fig.dim = c(9,6)}
+<<heterogeneity_markerGenes_expression_projection>>
+```
+
+### Expression of marker genes on violin plot for each cluster 
+```{r rmd_heterogeneity_markerGenes_expression_violin, warning = TRUE, fig.dim = c(16,8)}
+<<heterogeneity_markerGenes_expression_violin>>
+```
+
+### Annotation of clusters        
+```{r rmd_celltype_per_clusters, warning = TRUE, fig.dim = c(12,8)}
+<<celltype_per_clusters>>
+```
+
+### Pseudotime
+```{r rmd_pseudotime_hemascape, warning = TRUE, fig.dim = c(12,8)}
+<<pseudotime_hemascape>>
+```
+
+### Genes of Interest
+```{r rmd_genes_of_interest, warning=TRUE, fig.dim= c(16,8)}
+<<genes_of_interest>>
+```
+
+### Enrich GO
+```{r rmd_heterogeneity_markerGenes_functional_enrichment, warning = TRUE, fig.dim = c(12,8)}
+<<heterogeneity_markerGenes_functional_enrichment>>
+```
+
+### Scoring
+```{r rmd_scoring, warning=TRUE, fig.dim= c(9, 6)}
+<<scoring>>
+```
+
+## Finalize session
+```{r rmd_final_saveSessionImage, warning = TRUE, fig.dim = c(9,6)}
+<<final_saveSessionImage>>
+```
+
+
