@@ -1,8 +1,12 @@
-# HematoMaf-scRNA_seq-
+# HematoMaf-scRNA_seq
 Single-cell RNA-seq pipeline studying HSC myeloid commitment and M-CSF-induced macrophage differentiation in Mafb⁻/⁻ mice.
 
 
 # Single-Cell RNA-seq Analysis of Hematopoietic Stem Cells in Mafb Knockout Mice
+
+
+<img width="280" height="280" alt="image" src="https://github.com/user-attachments/assets/0e5e553f-1e32-4b93-b0b5-e9864cebf5f2" />
+
 
 ## Project Overview
 
