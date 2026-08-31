@@ -99,27 +99,6 @@ All required R packages and their versions are listed in 00_generalDeps.R.
 
 ---
 
-## Repository Structure
-
-03_Script/
-└── 01_GlobalHeterogeneity/
-    ├── 00_generalDeps.R                          — R package dependencies
-    ├── analysisParams.R                          — Analysis parameters
-    ├── launch_reports_compilation.R              — Report launcher
-    ├── Report.Rmd                                — Main Rmarkdown report
-    ├── 01_prepareData.R                          — QC and filtering
-    ├── 02_GlobalHeterogeneity_tSNE_UMAP.R        — Dimensionality reduction & annotation
-    ├── 03_cellHeterogeneity_Clustering.R         — Clustering
-    ├── 04_cellHeterogeneity_MarkerGenes.R        — Differential expression analysis
-    └── 07_clusterFunctionalAnalysis.R            — GO functional enrichment
-
-05_OUTPUT/
-└── reports/                                      — Generated HTML reports
-
-README.md
-
----
-
 ## Usage
 
 Set the working directory and launch the full report by sourcing:
