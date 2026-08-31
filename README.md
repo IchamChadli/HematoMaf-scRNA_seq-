@@ -95,19 +95,7 @@ radiate outward along their respective lineage branches.
 
 ## Dependencies
 
-R Packages:
-- Seurat >= 5.0 — Core scRNA-seq analysis
-- HemaScribe 1.0.0 — Hematopoietic annotation and pseudotime
-- clusterProfiler 4.14.x — GO enrichment
-- rrvgo — GO term reduction
-- DESeq2 — Bulk RNA-seq DE
-- ggplot2 >= 3.5 — Visualization
-- ggridges — Ridge plots
-- pheatmap — Heatmaps
-- DT — Interactive tables
-- scDblFinder — Doublet detection
-- destiny — Diffusion map
-
+All required R packages and their versions are listed in 00_generalDeps.R.
 ---
 
 ## Repository Structure
